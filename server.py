@@ -1,19 +1,8 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
+@app.route('/<string:page>')
 @app.route('/')
-@app.route('/index.html')
-def hello_world():
-    return render_template('./index.html')
-
-@app.route('/works.html')
-def work():
-    return render_template('./works.html')
-
-@app.route('/about.html')
-def about():
-    return render_template('./about.html')
-
-@app.route('/contact.html')
-def contact():
-    return render_template('./contact.html')
+def render_page(page=None):
+    rendered_page = 'index.html' if page is None else page
+    return render_template(f'./{rendered_page}')
